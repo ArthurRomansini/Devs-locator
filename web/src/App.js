@@ -3,6 +3,7 @@ import React from 'react';
 import './global.css';
 import './App.css';
 import './Sidebar.css';
+import './Main.css';
 
 function App(){
  
@@ -35,7 +36,8 @@ function App(){
 
           <button type="submit">Salvar</button>
         </form>
-        </aside>
+      </aside>
+
       <main>
         <ul>
           <li className="dev-item">
@@ -50,7 +52,6 @@ function App(){
             <a href="https://github.com/ArthurRomansini">Acessar perfil no Github</a>
           </li>
         </ul>
-
       </main>
     </div>
    );
