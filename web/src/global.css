@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,700&display=swap');
 
 *{
- margin: 5px;
+ margin: 0;
  padding: 0;
  outline: 0;
  box-sizing: border-box;
@@ -11,7 +11,7 @@ html, body, #root {
 }
 
 body {
-    background: #e6ffe6;
+    background: #fff2e6;
     -webkit-font-smoothing: antialiased;
 }
 
