@@ -6,6 +6,7 @@ import './Sidebar.css';
 import './Main.css';
 
 function App(){
+  const [devs, setDevs] = useState([]); 
   const [github_username, setGithubUsername] = useState('');
   const [techs, setTechs] = useState('');
   const [latitude, setLatitude] = useState('');
@@ -30,6 +31,17 @@ function App(){
     );
   }, []);
 
+  useEffect(() => {
+    async function loadDevs() {
+      const response = await api.get('/devs');
+
+      setDevs(response.data);
+    }
+
+    loadDevs();
+  }, [
+  ]);
+
   async function handleAddDev(e) {
     e.preventDefault();
 
@@ -40,7 +52,8 @@ function App(){
       longitude,
     })
 
-    console.log(response.data)
+    setGithubUsername('');
+    setTechs('');
   }
 
    return (
@@ -99,17 +112,19 @@ function App(){
 
       <main>
         <ul>
-          <li className="dev-item">
+          {devs.map(devs => (
+            <li className="dev-item">
             <header>
-              <img src="https://avatars2.githubusercontent.com/u/59968944?s=460&v=4" alt="Arthur Romansini"/>
+              <img src={devs.avatar_url} alt={devs.name}/>
               <div className="user-info">
-                <strong>Arthur Romansini</strong>
-                <span>ReactJS, React Native, Node.js</span>
+                <strong>{devs.name}</strong>
+                <span>{devs.techs.join(', ')}</span>
               </div>
             </header>
-            <p>Desenvolvedor Web. NodeJS, ReactJS, React Native.</p>
-            <a href="https://github.com/ArthurRomansini">Acessar perfil no Github</a>
+            <p>{devs.bio}</p>
+            <a href={`https://github.com/${devs.github_username}`}>Acessar perfil no Github</a>
           </li>
+          ))}
         </ul>
       </main>
     </div>
